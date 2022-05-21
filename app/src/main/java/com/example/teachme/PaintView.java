@@ -36,6 +36,7 @@ public class PaintView extends View {
     public Letter letter= new Letter();
     public int pos ;
     boolean draw = true;
+    boolean redraw = false;
 
 
     public PaintView(Context context) {
@@ -79,7 +80,6 @@ public class PaintView extends View {
         if(!b & draw){
             draw=false;
             ml.makeToast();
-            clear(true);
             return true;
         }
 
@@ -95,7 +95,14 @@ public class PaintView extends View {
             break;
 
             case  MotionEvent.ACTION_UP:
-
+                if(!draw)
+                {  try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                    clear(false);
+                break;}
                 switch (letter.caracter)
                 {
 
@@ -156,14 +163,15 @@ public class PaintView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
 
-        canvas.drawPath(path,brush);
+            canvas.drawPath(path,brush);
+        
     }
 
     public void clear(boolean drw)
     {
-        draw=drw;
-        path.reset();
+        path= new Path();
         invalidate();
+        draw=true;
     }
 
     public void setlistener(MyListener listener)
