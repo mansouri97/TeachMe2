@@ -83,7 +83,7 @@ public class PaintView extends View {
             return true;
         }
 
-        Log.i("", String.valueOf(b));
+
         Log.i("", String.valueOf(pointX)+" " +String.valueOf(pointY));
         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN:
@@ -128,6 +128,25 @@ public class PaintView extends View {
 
                         }
                         break;
+                    case "B":
+                        if(letter.b[0] & letter.b[1] & letter.b[2] & letter.b[3] & letter.b[4] & letter.b[5] & letter.b[6] & letter.b[7])
+                        {
+                            Arrays.fill(letter.b, false);
+                            //ml.makeToast();
+                            Toast toast = Toast.makeText(getContext(),"hurray",Toast.LENGTH_SHORT);
+
+                            toast.show();
+                            try {
+                                Thread.sleep(100);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            clear(false);
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
+
+                            builder.setMessage("Passer au caractère suivant?").setPositiveButton("Yes", dialogClickListener)
+                                    .setNegativeButton("No", dialogClickListener).show();
+                        }
                     case "I":
                         if(letter.i[0] & letter.i[1] & letter.i[2])
                         {
@@ -164,7 +183,7 @@ public class PaintView extends View {
     protected void onDraw(Canvas canvas) {
 
             canvas.drawPath(path,brush);
-        
+
     }
 
     public void clear(boolean drw)
