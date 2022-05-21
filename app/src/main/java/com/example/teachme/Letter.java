@@ -9,19 +9,19 @@ public class Letter {
 
     public String caracter;
 
-    public void test(float x,float y)
+    public boolean test(float x,float y)
     {
         switch (caracter)
         {
             case "A":
-                testa(x,y);
+                return testa(x,y);
             case "I" :
                 testi(x,y);
 
 
 
         }
-
+        return true;
     }
 
     public void testi(float x,float y)
@@ -44,40 +44,32 @@ public class Letter {
 
     }
 
-    public void testa(float x,float y)
-    {
-        if ((650<x & x<780)  &(490<y & y<590) )
-        {
+    public boolean testa(float x,float y) {
+        if ((650 < x & x < 780) & (490 < y & y < 590)) {
             Log.i("", "yesss");
             a[0] = true;
-        }
-        if((440<x & x<600)  &(950<y & y<1100))
-        {
+        } else if ((490 < x & x < 600) & (950 < y & y < 1100)) {
             Log.i("", "yesss2");
             a[1] = true;
-        }
-        if((800<x & x<970)  &(950<y & y<1100))
-        {
+        } else if ((800 < x & x < 970) & (950 < y & y < 1100)) {
             Log.i("", "yesss3");
             a[2] = true;
-        }
-
-        if((500<x & x<600)  &(700<y & y<920))
-        {
+        } else if ((500 < x & x < 600) & (700 < y & y < 920)) {
             Log.i("", "yesss4");
             a[3] = true;
-        }
-        if((800<x & x<900)  &(700<y & y<920))
-        {
+        } else if ((800 < x & x < 900) & (700 < y & y < 920)) {
             Log.i("", "yesss5");
             a[4] = true;
-        }
-        if((680<x & x<710)  &(700<y & y<920))
-        {
+        } else if ((680 < x & x < 710) & (700 < y & y < 920)) {
             Log.i("", "yesss6");
             a[5] = true;
-        }
+        } else if (((10 < x & x < 500) & (490 < y & y < 690)) ||
+                   ((10 < x & x < 500) & (590< y & y < 690))||
+                    ((10 < x & x < 600) & (690< y & y < 790))
+                  )
+            return false;
 
+      return true;
     }
 
 

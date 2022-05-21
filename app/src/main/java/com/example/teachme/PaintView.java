@@ -2,19 +2,24 @@ package com.example.teachme;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -30,6 +35,7 @@ public class PaintView extends View {
     public Paint brush = new Paint();
     public Letter letter= new Letter();
     public int pos ;
+    boolean draw = true;
 
 
     public PaintView(Context context) {
@@ -69,11 +75,19 @@ public class PaintView extends View {
     public boolean onTouchEvent(MotionEvent event) {
         float pointX = event.getX();
         float pointY = event.getY();
-        letter.test(pointX, pointY);
+        boolean b =  letter.test(pointX, pointY);
+        if(!b & draw){
+            draw=false;
+            ml.makeToast();
+            clear(true);
+            return true;
+        }
+
+        Log.i("", String.valueOf(b));
         Log.i("", String.valueOf(pointX)+" " +String.valueOf(pointY));
         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN:
-            path.moveTo(pointX,pointY);
+                path.moveTo(pointX,pointY);
             return true;
 
             case MotionEvent.ACTION_MOVE:
@@ -81,22 +95,29 @@ public class PaintView extends View {
             break;
 
             case  MotionEvent.ACTION_UP:
+
                 switch (letter.caracter)
                 {
 
                     case "A":
                         if(letter.a[0] & letter.a[1] & letter.a[2] & letter.a[3] & letter.a[4] & letter.a[5])
                         {
-                            Arrays.fill(letter.i, false);
+                            Arrays.fill(letter.a, false);
+                            //ml.makeToast();
                             Toast toast = Toast.makeText(getContext(),"hurray",Toast.LENGTH_SHORT);
+
                             toast.show();
                             try {
-                                Thread.sleep(1000);
+                                Thread.sleep(100);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
-                            clear();
-                            ml.callback(pos);
+                            clear(false);
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
+
+                            builder.setMessage("Passer au caractère suivant?").setPositiveButton("Yes", dialogClickListener)
+                                    .setNegativeButton("No", dialogClickListener).show();
+                           // ml.callback(pos);
 
                         }
                         break;
@@ -105,16 +126,20 @@ public class PaintView extends View {
                         {
                             Arrays.fill(letter.i, false);
                             Toast toast = Toast.makeText(getContext(),"hurray",Toast.LENGTH_SHORT);
+                            View view = toast.getView();
+                            view.getBackground().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_IN);
+
                             toast.show();
                             try {
                                 Thread.sleep(1000);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
-                            clear();
+                            clear(false);
                             ml.callback(pos);
 
                         }
+                        draw=true;
                         break;
                 }
             break;
@@ -130,20 +155,36 @@ public class PaintView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        ///canvas.drawCircle(x, y, radius, paint);
+
         canvas.drawPath(path,brush);
     }
 
-    public void clear()
+    public void clear(boolean drw)
     {
-  path.reset();
-  invalidate();
+        draw=drw;
+        path.reset();
+        invalidate();
     }
 
     public void setlistener(MyListener listener)
     {
         this.ml= (MyListener)listener;
     }
+
+    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            switch (which){
+                case DialogInterface.BUTTON_POSITIVE:
+                    ml.callback(pos);
+                    break;
+
+                case DialogInterface.BUTTON_NEGATIVE:
+                    //No button clicked
+                    break;
+            }
+        }
+    };
 
 
 

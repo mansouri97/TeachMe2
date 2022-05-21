@@ -6,11 +6,15 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements MyListener {
@@ -58,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements MyListener {
 
     public void b1click(View view) {
         PaintView paintview = (PaintView) findViewById(R.id.pnt);
-        paintview.clear();
+        paintview.clear(false);
 
     }
 
@@ -66,6 +70,9 @@ public class MainActivity extends AppCompatActivity implements MyListener {
 
     @Override
     public void callback(int position) {
+
+        Spinner dropdown = findViewById(R.id.spinner);
+        dropdown.setSelection(position);
         position++;
         int resource = R.drawable.a;///7000051  b=7000053
         ImageView letter = (ImageView) findViewById(R.id.imageView);
@@ -75,5 +82,24 @@ public class MainActivity extends AppCompatActivity implements MyListener {
         Log.i("", String.valueOf(position-1+65));
         paintview.letter.caracter=Character.toString((char) (position-1+65));
         paintview.pos=position;
+    }
+
+    @Override
+    public void makeToast() {
+
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.customtoast,
+                (ViewGroup) findViewById(R.id.toast_layout_root));
+
+        TextView text = (TextView) layout.findViewById(R.id.text);
+        text.setText("Caractere erroné");
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
+
+
     }
 }
