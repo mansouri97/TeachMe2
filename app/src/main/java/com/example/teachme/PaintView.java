@@ -81,7 +81,7 @@ public class PaintView extends View {
     }
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.i("",  String.valueOf( event.getRawY())+" "+String.valueOf( event.getY()));
+        Log.i("",  String.valueOf( event.getRawX())+" "+String.valueOf( event.getRawY()));
         float rawpointX = event.getRawX();//-162
         float rawpointY = event.getRawY();//+480
         float pointX = event.getX();//-162
