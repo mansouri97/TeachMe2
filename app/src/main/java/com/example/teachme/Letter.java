@@ -50,13 +50,13 @@ public class Letter {
     }
 
     public boolean testa(float x,float y) {
-       // Log.i("",  String.valueOf( x= (float) ((x*100.0)/wdth)));
+       Log.i("",  String.valueOf( (xper(488))));
        //1080---->100%
         //x------->%
-        if ((xper(488) < xper(x) & xper(x) < xper(618)) & (yper(970) < yper(y) & yper(y) < yper(590+480))) {
+        if ((xper(488) < xper(x,true) & xper(x,true) < xper(618)) & (yper(970) < yper(y) & yper(y) < yper(590+480))) {
             Log.i("", "yesss");
             a[0] = true;
-        } else if (( xper(490-162)< xper(x)  & xper(x)  < xper(600-162)) & (yper(950+480) < yper(y) & yper(y) < yper(1100+480))) {
+        } else if (( xper(490-162)< xper(x,true)  & xper(x)  < xper(600-162)) & (yper(950+480) < yper(y) & yper(y) < yper(1100+480))) {
             Log.i("", "yesss2");
             a[1] = true;
         } else if ((xper(800-162) < xper(x)  & xper(x)  < xper(970-162)) & (yper(950+480) < yper(y) & yper(y) < yper(1100+480))) {
@@ -87,9 +87,26 @@ public class Letter {
     }
     public float xper(float x)
     {
-        return (x*100)/wdth;
+        float iniper = (x*100)/1080;
+        x=(iniper*wdth)/100;
+     //float target = (iniper*wdth)/100;
+
+        //45%
+        return x;
+    }
+    public float xper(float x,boolean a )
+    {
+        float iniper = (x*100)/wdth;
+        //float target = (iniper*wdth)/100;
+
+        //45%
+        return iniper;
     }
     public float yper(float y)
+    {
+        return (y*100)/2177;
+    }
+    public float yper(float y,boolean a )
     {
         return (y*100)/hight;
     }
