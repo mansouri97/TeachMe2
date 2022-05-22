@@ -50,28 +50,31 @@ public class Letter {
     }
 
     public boolean testa(float x,float y) {
-       Log.i("",  String.valueOf( (xper(488))));
+       //Log.i("",  String.valueOf( (xper(x))));
        //1080---->100%
         //x------->%
-        if ((xper(488) < xper(x,true) & xper(x,true) < xper(618)) & (yper(970) < yper(y) & yper(y) < yper(590+480))) {
+        Log.i("",  String.valueOf( (xper(618))));
+        if ((xper(488) < x & x < xper(618)) & (yper(970) < y & y < yper(590+480))) {
+
             Log.i("", "yesss");
+
             a[0] = true;
-        } else if (( xper(490-162)< xper(x,true)  & xper(x)  < xper(600-162)) & (yper(950+480) < yper(y) & yper(y) < yper(1100+480))) {
+        } else if (( xper(490-162)< x & x  < xper(600-162)) & (yper(950+480) < y & y < yper(1100+480))) {
             Log.i("", "yesss2");
             a[1] = true;
-        } else if ((xper(800-162) < xper(x)  & xper(x)  < xper(970-162)) & (yper(950+480) < yper(y) & yper(y) < yper(1100+480))) {
+        } else if ((xper(800-162) < x  & x  < xper(970-162)) & (yper(950+480) < y & y < yper(1100+480))) {
             Log.i("", "yesss3");
             a[2] = true;
-        } else if ((xper(500-162) < xper(x)  & xper(x)  < xper(600-162)) & (yper(700+480) < yper(y) & yper(y) < yper(920+480))) {
+        } else if ((xper(500-162) < x  & x  < xper(600-162)) & (yper(700+480) < y & y < yper(920+480))) {
             Log.i("", "yesss4");
             a[3] = true;
-        } else if ((xper(800-162) < xper(x)  & xper(x)  < xper(900-162)) & (yper(700+480) < yper(y) & yper(y) < yper(920+480))) {
+        } else if ((xper(800-162) < x  & x  < xper(900-162)) & (yper(700+480) < y & y < yper(920+480))) {
             Log.i("", "yesss5");
             a[4] = true;
-        } else if ((xper(680-162) < xper(x)  & xper(x)  < xper(710-162)) & (yper(700+480) < yper(y) & yper(y) < yper(920+480))) {
+        } else if ((xper(680-162) < x  & x  < xper(710-162)) & (yper(700+480) < y & y < yper(920+480))) {
             Log.i("", "yesss6");
             a[5] = true;
-        } else if (((xper(10-162) < xper(x)  & xper(x)  < xper(500-162)) & (yper(490+480) < yper(y) & yper(y) < yper(690+480))) ||
+        } else if (((xper(10-162) < x  & x  < xper(500-162)) & (yper(490+480) < y & y < yper(690+480))) ||
                    ((10-162 < x & x < 500-162) & (590+480< y & y < 690+480))||
                     ((10-162 < x & x < 600-162) & (690+480< y & y < 790+480))||
 
@@ -104,7 +107,8 @@ public class Letter {
     }
     public float yper(float y)
     {
-        return (y*100)/2177;
+        float iniper = (y*100)/2177;
+        return y=(iniper*hight)/100;
     }
     public float yper(float y,boolean a )
     {
