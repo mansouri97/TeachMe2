@@ -6,7 +6,8 @@ public class Letter {
     boolean[] a={false,false,false,false,false,false};
     boolean[] b={false,false,false,false,false,false,false,false};
     boolean[] i={false,false,false};
-
+    int wdth;
+    int hight;
 
     public String caracter;
 
@@ -29,6 +30,7 @@ public class Letter {
 
     public void testi(float x,float y)
     {
+
         if ((680<x & x<720)  &(490<y & y<550) )
         {
             Log.i("", "yesss");
@@ -48,31 +50,34 @@ public class Letter {
     }
 
     public boolean testa(float x,float y) {
-        if ((650 < x & x < 780) & (490 < y & y < 590)) {
+       // Log.i("",  String.valueOf( x= (float) ((x*100.0)/wdth)));
+       //1080---->100%
+        //x------->%
+        if ((xper(488) < xper(x) & xper(x) < xper(618)) & (yper(970) < yper(y) & yper(y) < yper(590+480))) {
             Log.i("", "yesss");
             a[0] = true;
-        } else if ((490 < x & x < 600) & (950 < y & y < 1100)) {
+        } else if (( xper(490-162)< xper(x)  & xper(x)  < xper(600-162)) & (yper(950+480) < yper(y) & yper(y) < yper(1100+480))) {
             Log.i("", "yesss2");
             a[1] = true;
-        } else if ((800 < x & x < 970) & (950 < y & y < 1100)) {
+        } else if ((xper(800-162) < xper(x)  & xper(x)  < xper(970-162)) & (yper(950+480) < yper(y) & yper(y) < yper(1100+480))) {
             Log.i("", "yesss3");
             a[2] = true;
-        } else if ((500 < x & x < 600) & (700 < y & y < 920)) {
+        } else if ((xper(500-162) < xper(x)  & xper(x)  < xper(600-162)) & (yper(700+480) < yper(y) & yper(y) < yper(920+480))) {
             Log.i("", "yesss4");
             a[3] = true;
-        } else if ((800 < x & x < 900) & (700 < y & y < 920)) {
+        } else if ((xper(800-162) < xper(x)  & xper(x)  < xper(900-162)) & (yper(700+480) < yper(y) & yper(y) < yper(920+480))) {
             Log.i("", "yesss5");
             a[4] = true;
-        } else if ((680 < x & x < 710) & (700 < y & y < 920)) {
+        } else if ((xper(680-162) < xper(x)  & xper(x)  < xper(710-162)) & (yper(700+480) < yper(y) & yper(y) < yper(920+480))) {
             Log.i("", "yesss6");
             a[5] = true;
-        } else if (((10 < x & x < 500) & (490 < y & y < 690)) ||
-                   ((10 < x & x < 500) & (590< y & y < 690))||
-                    ((10 < x & x < 600) & (690< y & y < 790))||
+        } else if (((xper(10-162) < xper(x)  & xper(x)  < xper(500-162)) & (yper(490+480) < yper(y) & yper(y) < yper(690+480))) ||
+                   ((10-162 < x & x < 500-162) & (590+480< y & y < 690+480))||
+                    ((10-162 < x & x < 600-162) & (690+480< y & y < 790+480))||
 
-                    ((800 < x ) & (490 < y & y < 690))||
-                    ((800 < x ) & (590< y & y < 690))||
-                    ((800 < x ) & (690< y & y < 790))
+                    ((800-162 < x ) & (490+480 < y & y < 690+480))||
+                    ((800-162 < x ) & (590+480< y & y < 690+480))||
+                    ((800-162 < x ) & (690+480< y & y < 790+480))
 
 
         )
@@ -80,38 +85,48 @@ public class Letter {
 
       return true;
     }
+    public float xper(float x)
+    {
+        return (x*100)/wdth;
+    }
+    public float yper(float y)
+    {
+        return (y*100)/hight;
+    }
     public boolean testb(float x,float y) {
-        if ((560 < x & x < 590) & (500 < y & y < 570)) {
+
+        Log.i("", "yesss");
+        if ((xper(560-162) < xper(x) & xper(x) < 590-162) & (yper(500+480) < yper(y) & yper(y) < yper(570+480))) {
             Log.i("", "yesss");
              b[0] = true;
         }
-        if ((560 < x & x < 590) & (720 < y & y < 820)) {
+        if ((xper(560-162) < xper(x)& xper(x) < 590-162) & (yper(720+480) < yper(y) & yper(y) < yper(820+480))) {
             Log.i("", "yesss2");
             b[1] = true;
         }
-        if ((560 < x & x < 590) & (950 < y & y < 1060)) {
+        if ((xper(560-162) < xper(x) & xper(x) < xper(590-162)) & (yper(950+480) < yper(y) & yper(y) < yper(1060+480))) {
             Log.i("", "yesss3");
             b[2] = true;
         }
 
-        if ((615 < x & x < 715) & (500 < y & y < 570)) {
+        if ((xper(615-162) < xper(x)& xper(x) < xper(715-162)) & (yper(500+480) < yper(y) & yper(y) < yper(570+480))) {
             Log.i("", "yesss4");
             b[3] = true;
         }
-        if ((615 < x & x < 715) & (720 < y & y < 820)) {
+        if ((xper(615-162) < xper(x) & xper(x) < xper(715-162)) & (yper(720+480) < yper(y) & yper(y) < yper(820+480))) {
             Log.i("", "yesss5");
             b[4] = true;
         }
-        if ((615 < x & x < 715) & (950 < y & y < 1060)) {
+        if ((xper(615-162) < xper(x) & xper(x) < xper(715-162)) & (yper(950+480) < yper(y) & yper(y) < yper(1060+480))) {
             Log.i("", "yesss6");
             b[5] = true;
         }
-        if ((720 < x & x < 850) & (614 < y & y < 690)) {
+        if ((xper(720-162) < xper(x) & xper(x)  < xper(850-162)) & (yper(614+480) < yper(y) & yper(y) < yper(690+480))) {
             Log.i("", "yesss7");
             b[6] = true;
         }
 
-        if ((750 < x & x < 900) & (840 < y & y < 940)) {
+        if ((xper(750-162) < xper(x) & xper(x) < xper(900-162)) & (yper(840+480) < yper(y) & yper(y) < yper(940+480))) {
             Log.i("", "yesss8");
             b[7] = true;
         }

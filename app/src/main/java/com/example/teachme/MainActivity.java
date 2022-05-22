@@ -22,14 +22,14 @@ public class MainActivity extends AppCompatActivity implements MyListener {
 
 
 
-
+    String[] items = new String[]{"Select letter", "a", "b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Spinner dropdown = findViewById(R.id.spinner);
-        String[] items = new String[]{"Select letter", "a", "b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
+
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
         dropdown.setSelection(0);
@@ -38,16 +38,21 @@ public class MainActivity extends AppCompatActivity implements MyListener {
         dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                int resource = R.drawable.a;///7000051  b=7000053
-                ImageView letter = (ImageView) findViewById(R.id.imageView);
-                letter.setImageResource(resource+position-1);
 
-                PaintView paintview = (PaintView) findViewById(R.id.pnt);
-                Log.i("", String.valueOf(position-1+65));
-                paintview.letter.caracter=Character.toString((char) (position-1+65));
-                paintview.pos=position;
-                //Log.i("", paintview.letter.caracter);
-            }
+
+                    int resource = getResources().getIdentifier(items[position], "drawable", getPackageName());
+                    Log.i("", "a= "+String.valueOf(resource));
+                    //int resource = (int)R.drawable.a;///7000051  b=7000053
+                    ImageView letter = (ImageView) findViewById(R.id.imageView);
+
+                    letter.setImageResource(resource);
+
+                    PaintView paintview = (PaintView) findViewById(R.id.pnt);
+
+                    paintview.letter.caracter = items[position].toUpperCase();
+                    paintview.pos = position;
+                    //Log.i("", paintview.letter.caracter);
+                }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
@@ -72,15 +77,18 @@ public class MainActivity extends AppCompatActivity implements MyListener {
     public void callback(int position) {
 
         Spinner dropdown = findViewById(R.id.spinner);
-        dropdown.setSelection(position);
         position++;
-        int resource = R.drawable.a;///7000051  b=7000053
+        dropdown.setSelection(position);
+
+        int resource = getResources().getIdentifier(items[position], "drawable", getPackageName());
+
+        //int resource = R.drawable.a;///7000051  b=7000053
         ImageView letter = (ImageView) findViewById(R.id.imageView);
-        letter.setImageResource(resource+position-1);
+        letter.setImageResource(resource);
 
         PaintView paintview = (PaintView) findViewById(R.id.pnt);
-        Log.i("", String.valueOf(position-1+65));
-        paintview.letter.caracter=Character.toString((char) (position-1+65));
+        //Log.i("", String.valueOf(position-1+65));
+        paintview.letter.caracter=items[position].toUpperCase();
         paintview.pos=position;
     }
 

@@ -1,10 +1,13 @@
 package com.example.teachme;
 
+import static android.view.MotionEvent.AXIS_X;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -15,6 +18,7 @@ import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -37,7 +41,8 @@ public class PaintView extends View {
     public int pos ;
     boolean draw = true;
     boolean redraw = false;
-
+    int height;
+    int width;
 
     public PaintView(Context context) {
         super(context);
@@ -62,8 +67,10 @@ public class PaintView extends View {
         ((Activity) getContext()).getWindowManager()
                 .getDefaultDisplay()
                 .getMetrics(displayMetrics);
-        int height = displayMetrics.heightPixels;
-        int width = displayMetrics.widthPixels;
+        height = displayMetrics.heightPixels;
+        width = displayMetrics.widthPixels;
+        letter.hight=height;
+        letter.wdth=width;
         Log.i("", String.valueOf(height)+" " +String.valueOf(width));
         brush.setAntiAlias(true);
         brush.setColor(Color.MAGENTA);
@@ -74,9 +81,12 @@ public class PaintView extends View {
     }
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        float pointX = event.getX();
+        Log.i("",  String.valueOf( event.getRawY())+" "+String.valueOf( event.getY()));
+        float rawpointX = event.getRawX();//-162
+        float rawpointY = event.getRawY();//+480
+        float pointX = event.getX();//-162
         float pointY = event.getY();
-        boolean b =  letter.test(pointX, pointY);
+        boolean b =  letter.test(rawpointX, rawpointY);
         if(!b & draw){
             draw=false;
             ml.makeToast();
@@ -84,7 +94,7 @@ public class PaintView extends View {
         }
 
 
-        Log.i("", String.valueOf(pointX)+" " +String.valueOf(pointY));
+       // Log.i("", String.valueOf(pointX)+" " +String.valueOf(pointY));
         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN:
                 path.moveTo(pointX,pointY);
@@ -214,6 +224,11 @@ public class PaintView extends View {
     };
 
 
+
+    private int dpToPx(int dp) {
+        Resources r = getResources();
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
+    }
 
 
 
