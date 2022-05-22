@@ -1,0 +1,12 @@
+com/example/teachme/Letter.java
+ com.example.teachme.Letter
+com/example/teachme/MyListener.java
+ com.example.teachme.MyListener
+com/example/teachme/BuildConfig.java
+ com.example.teachme.BuildConfig
+com/example/teachme/PaintView.java
+ com.example.teachme.PaintView
+ com.example.teachme.PaintView$1
+com/example/teachme/MainActivity.java
+ com.example.teachme.MainActivity
+ com.example.teachme.MainActivity$1
