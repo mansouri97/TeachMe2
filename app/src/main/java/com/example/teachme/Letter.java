@@ -117,37 +117,37 @@ public class Letter {
     public boolean testb(float x,float y) {
 
         Log.i("", "yesss");
-        if ((xper(560-162) < xper(x) & xper(x) < 590-162) & (yper(500+480) < yper(y) & yper(y) < yper(570+480))) {
+        if ((xper(560-162) < x & x < 590-162) & (yper(500+480) < y  & y  < yper(570+480))) {
             Log.i("", "yesss");
              b[0] = true;
         }
-        if ((xper(560-162) < xper(x)& xper(x) < 590-162) & (yper(720+480) < yper(y) & yper(y) < yper(820+480))) {
+        if ((xper(560-162) < x& x < 590-162) & (yper(720+480) < y  & y  < yper(820+480))) {
             Log.i("", "yesss2");
             b[1] = true;
         }
-        if ((xper(560-162) < xper(x) & xper(x) < xper(590-162)) & (yper(950+480) < yper(y) & yper(y) < yper(1060+480))) {
+        if ((xper(560-162) < x  & x < xper(590-162)) & (yper(950+480) < y  & y  < yper(1060+480))) {
             Log.i("", "yesss3");
             b[2] = true;
         }
 
-        if ((xper(615-162) < xper(x)& xper(x) < xper(715-162)) & (yper(500+480) < yper(y) & yper(y) < yper(570+480))) {
+        if ((xper(615-162) < x & x  < xper(715-162)) & (yper(500+480) < y  & y  < yper(570+480))) {
             Log.i("", "yesss4");
             b[3] = true;
         }
-        if ((xper(615-162) < xper(x) & xper(x) < xper(715-162)) & (yper(720+480) < yper(y) & yper(y) < yper(820+480))) {
+        if ((xper(615-162) < x  & x < xper(715-162)) & (yper(720+480) < y & y < yper(820+480))) {
             Log.i("", "yesss5");
             b[4] = true;
         }
-        if ((xper(615-162) < xper(x) & xper(x) < xper(715-162)) & (yper(950+480) < yper(y) & yper(y) < yper(1060+480))) {
+        if ((xper(615-162) < x & x < xper(715-162)) & (yper(950+480) < y & y < yper(1060+480))) {
             Log.i("", "yesss6");
             b[5] = true;
         }
-        if ((xper(720-162) < xper(x) & xper(x)  < xper(850-162)) & (yper(614+480) < yper(y) & yper(y) < yper(690+480))) {
+        if ((xper(720-162) < x & x  < xper(850-162)) & (yper(614+480) < y & y < yper(690+480))) {
             Log.i("", "yesss7");
             b[6] = true;
         }
 
-        if ((xper(750-162) < xper(x) & xper(x) < xper(900-162)) & (yper(840+480) < yper(y) & yper(y) < yper(940+480))) {
+        if ((xper(750-162) < x & x < xper(900-162)) & (yper(840+480) < y & y < yper(940+480))) {
             Log.i("", "yesss8");
             b[7] = true;
         }
